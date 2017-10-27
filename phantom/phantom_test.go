@@ -5,12 +5,7 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	p, err := NewPhantom()
-	if err != nil {
-		t.Errorf("NewPhantom() is error: %v", err)
-		return
-	}
-
+	p := NewPhantom()
 	if p == nil {
 		t.Error("NewPhantom() is nil")
 		return

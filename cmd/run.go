@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/hlts2/gophan/phantom"
 	cli "github.com/spf13/cobra"
 )
 
@@ -20,21 +21,24 @@ var runCmd = &cli.Command{
 }
 
 var (
-	out     string
-	filters []string
-	js      string
+	outPut string
+	//filters []string
+	jsFile string
 )
 
 func init() {
-	runCmd.PersistentFlags().StringVarP(&out, "out", "o", "capture.png", "Specify the output file of the capture result")
-	runCmd.PersistentFlags().StringVarP(&js, "set", "s", "", "Set Custom Javascript file for phantomjs")
-	runCmd.PersistentFlags().StringArrayVarP(&filters, "filter", "f", []string{}, "Retrieve the filtered html element")
+	runCmd.PersistentFlags().StringVarP(&outPut, "out", "o", "capture.png", "Specify the output file of the capture result")
+	runCmd.PersistentFlags().StringVarP(&jsFile, "set", "s", "", "Set Custom Javascript file for phantomjs")
+	//runCmd.PersistentFlags().StringArrayVarP(&filters, "filter", "f", []string{}, "Retrieve the filtered html element")
 }
 
 func run(args []string) error {
 	if len(args) == 0 {
 		return errors.New("Argument does not exist")
 	}
+
+	p := phantom.NewPhantom()
+	p.Exec(jsFile, []string{args[0], outPut}...)
 
 	return nil
 }
