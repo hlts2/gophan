@@ -22,10 +22,12 @@ var runCmd = &cli.Command{
 var (
 	out     string
 	filters []string
+	js      string
 )
 
 func init() {
-	runCmd.PersistentFlags().StringVarP(&out, "out", "o", "./capture.png", "Specify the output file of the capture result")
+	runCmd.PersistentFlags().StringVarP(&out, "out", "o", "capture.png", "Specify the output file of the capture result")
+	runCmd.PersistentFlags().StringVarP(&js, "set", "s", "", "Set Custom Javascript file for phantomjs")
 	runCmd.PersistentFlags().StringArrayVarP(&filters, "filter", "f", []string{}, "Retrieve the filtered html element")
 }
 
