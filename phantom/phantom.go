@@ -15,7 +15,7 @@ func NewPhantom() *phantom {
 	return p
 }
 
-func (p *phantom) Exec(jsFile string, args ...string) error {
+func (p *phantom) Exec(jsFile string) error {
 	var jsPath string
 	if jsFile == "" {
 		jsPath = generateJSPath()
