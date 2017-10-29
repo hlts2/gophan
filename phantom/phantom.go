@@ -15,15 +15,15 @@ func NewPhantom() *phantom {
 	return p
 }
 
-func (p *phantom) Exec(jsFile string) error {
-	var jsPath string
-	if jsFile == "" {
-		jsPath = generateJSPath()
-	} else {
-		jsPath = jsFile
+/**
+  @params args Arguments to pass to phantomjs([0]JSFile [1] URL)
+*/
+func (p *phantom) Exec(args []string) error {
+	if args[0] == "" {
+		args[0] = generateJSPath()
 	}
 
-	err := exec.Command(p.binPath, jsPath).Run()
+	err := exec.Command(p.binPath, args...).Run()
 	if err != nil {
 		return err
 	}
