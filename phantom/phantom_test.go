@@ -20,7 +20,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestExec(t *testing.T) {
-	args := []string{"", "https://www.yahoo.co.jp/"}
+	args := []string{"", "https://www.yahoo.co.jp/", "capture.png"}
 
 	err := p.Exec(args)
 	if err != nil {

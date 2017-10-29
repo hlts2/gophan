@@ -38,7 +38,7 @@ func run(args []string) error {
 	}
 
 	p := phantom.NewPhantom()
-	p.Exec(append([]string{jsFile}, args...))
+	p.Exec(append([]string{jsFile, outPut}, args...))
 
 	return nil
 }
