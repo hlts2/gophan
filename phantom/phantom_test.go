@@ -4,8 +4,10 @@ import (
 	"testing"
 )
 
+var p *phantom
+
 func TestNew(t *testing.T) {
-	p := NewPhantom()
+	p = NewPhantom()
 	if p == nil {
 		t.Error("NewPhantom() is nil")
 		return
@@ -14,5 +16,14 @@ func TestNew(t *testing.T) {
 	if p.binPath == "" {
 		t.Error("phantom binPath is Empty")
 		return
+	}
+}
+
+func TestExec(t *testing.T) {
+	args := []string{"", "https://www.yahoo.co.jp/"}
+
+	err := p.Exec(args)
+	if err != nil {
+		t.Error("Exec is error: %v", err)
 	}
 }
