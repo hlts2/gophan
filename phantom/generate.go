@@ -1,13 +1,13 @@
 package phantom
 
 import (
-	"os"
 	"path/filepath"
 	"runtime"
 )
 
 func generatePhantomPath() string {
-	dir, _ := os.Getwd()
+	_, b, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(b)
 
 	if runtime.GOOS == "darwin" {
 		return filepath.Join(dir, "..", "resource", "bin", "darwin", "phantomjs")
@@ -23,6 +23,7 @@ func generatePhantomPath() string {
 }
 
 func generateJSPath() string {
-	dir, _ := os.Getwd()
+	_, b, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(b)
 	return filepath.Join(dir, "..", "resource", "js", "load.js")
 }

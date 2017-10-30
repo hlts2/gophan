@@ -21,12 +21,12 @@ var runCmd = &cli.Command{
 }
 
 var (
-	outPut string
+	output string
 	jsFile string
 )
 
 func init() {
-	runCmd.PersistentFlags().StringVarP(&outPut, "out", "o", "capture.png", "Specify the output file of the capture result")
+	runCmd.PersistentFlags().StringVarP(&output, "out", "o", "capture.png", "Specify the output file of the capture result")
 	runCmd.PersistentFlags().StringVarP(&jsFile, "set", "s", "", "Set Custom Javascript file for phantomjs")
 }
 
@@ -36,7 +36,7 @@ func run(args []string) error {
 	}
 
 	p := phantom.NewPhantom()
-	err := p.Exec(append([]string{jsFile, outPut}, args...))
+	err := p.Exec(append([]string{jsFile, args[0]}, output))
 	if err != nil {
 		return err
 	}
