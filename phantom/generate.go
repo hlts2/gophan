@@ -1,29 +1,28 @@
 package phantom
 
 import (
+	"os"
 	"path/filepath"
 	"runtime"
 )
 
 func generatePhantomPath() string {
-	_, b, _, _ := runtime.Caller(0)
-	dir := filepath.Dir(b)
+	dir, _ := os.Getwd()
 
 	if runtime.GOOS == "darwin" {
-		return filepath.Join(dir, "..", "resource", "bin", "darwin", "phantomjs")
+		return filepath.Join(dir, "resource", "bin", "darwin", "phantomjs")
 	} else if runtime.GOOS == "windows" {
-		return filepath.Join(dir, "..", "resource", "bin", "windows", "phantomjs.exe")
+		return filepath.Join(dir, "resource", "bin", "windows", "phantomjs.exe")
 	} else {
 		if runtime.GOARCH == "386" {
-			return filepath.Join(dir, "..", "resource", "bin", "linux386", "phantomjs")
+			return filepath.Join(dir, "resource", "bin", "linux386", "phantomjs")
 		} else {
-			return filepath.Join(dir, "..", "resource", "bin", "linux64", "phantomjs")
+			return filepath.Join(dir, "resource", "bin", "linux64", "phantomjs")
 		}
 	}
 }
 
 func generateJSPath() string {
-	_, b, _, _ := runtime.Caller(0)
-	dir := filepath.Dir(b)
-	return filepath.Join(dir, "..", "resource", "js", "load.js")
+	dir, _ := os.Getwd()
+	return filepath.Join(dir, "resource", "js", "load.js")
 }
