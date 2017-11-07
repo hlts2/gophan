@@ -10,7 +10,7 @@ type phantom struct {
 
 func NewPhantom() *phantom {
 	p := &phantom{
-		binPath: generatePhantomPath(),
+		binPath: "", //TODO
 	}
 	return p
 }
@@ -20,7 +20,7 @@ func NewPhantom() *phantom {
 */
 func (p *phantom) Exec(args []string) error {
 	if args[0] == "" {
-		args[0] = generateJSPath()
+		args[0] = "" //TODO
 	}
 
 	err := exec.Command(p.binPath, args...).Run()
