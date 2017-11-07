@@ -16,7 +16,7 @@ func NewPhantom() *phantom {
 }
 
 /**
-  @params args Arguments to pass to phantomjs([0]javascript [1] URL, [3] Output File)
+  @params args Arguments to pass to phantomjs([0]javascript [1] URL, [2] Output File)
 */
 func (p *phantom) Exec(args []string) error {
 	if args[0] == "" {
