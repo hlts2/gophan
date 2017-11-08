@@ -1,6 +1,7 @@
 package phantom
 
 import (
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -36,23 +37,27 @@ func (p *phantom) Exec(args []string) error {
 	return nil
 }
 
+func getCachePath() string {
+	return filepath.Join(os.TempDir(), "gophan_chache")
+}
+
 func getBinPath() string {
-	cache := filepath.Join(os.TempDir(), "gophan_chache")
+	dir := getCachePath()
 
 	var ph string
 	if runtime.GOOS == "windows" {
-		ph = filepath.Join(cache, "phantomjs.exe")
+		ph = filepath.Join(dir, "phantomjs.exe")
 	} else {
-		ph = filepath.Join(cache, "phantomjs")
+		ph = filepath.Join(dir, "phantomjs")
 	}
 
 	return ph
 }
 
 func createBin() error {
-	path := getBinPath()
+	binP := getBinPath()
 
-	if _, err := os.Stat(path); os.IsNotExist(err) {
+	if _, err := os.Stat(binP); os.IsNotExist(err) {
 		name := res.AssetName()
 
 		b, err := res.Asset(name)
@@ -60,15 +65,10 @@ func createBin() error {
 			return err
 		}
 
-		f, err := os.Create(path)
-		if err != nil {
-			return err
-		}
+		dir := getCachePath()
+		os.Mkdir(dir, os.ModePerm)
 
-		_, err = f.Write(b)
-		if err != nil {
-			return err
-		}
+		ioutil.WriteFile(binP, b, 0600)
 	}
 
 	return nil
