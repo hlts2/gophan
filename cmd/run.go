@@ -35,8 +35,12 @@ func run(args []string) error {
 		return errors.New("Argument does not exist")
 	}
 
-	p := phantom.NewPhantom()
-	err := p.Exec(append([]string{jsFile, args[0]}, output))
+	p, err := phantom.NewPhantom()
+	if err != nil {
+		return err
+	}
+
+	err = p.Exec(append([]string{jsFile, args[0]}, output))
 	if err != nil {
 		return err
 	}
