@@ -30,10 +30,15 @@ func NewPhantom() (*phantom, error) {
   @params args Arguments to pass to phantomjs([0]javascript [1] URL, [2] Output File)
 */
 func (p *phantom) Exec(args []string) error {
-	p.cmd.Args = args
+	if args[0] == "" {
+		args[0] = loadjs()
+	}
+
+	p.cmd.Args = append(p.cmd.Args, args...)
 	if err := p.cmd.Run(); err != nil {
 		return err
 	}
+
 	return nil
 }
 
@@ -68,7 +73,7 @@ func createBin() error {
 		dir := getCachePath()
 		os.Mkdir(dir, os.ModePerm)
 
-		ioutil.WriteFile(binP, b, 0600)
+		ioutil.WriteFile(binP, b, os.ModePerm)
 	}
 
 	return nil

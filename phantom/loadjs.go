@@ -1,5 +1,11 @@
 package phantom
 
+import (
+	"io/ioutil"
+	"os"
+	"path/filepath"
+)
+
 //According to PhantomJS dev's comment on GitHub, the full support of ES6 will come with PhantomJS 2.5.
 var js = `
 var page = require('webpage').create()
@@ -13,3 +19,13 @@ page.open(args[1], function(state) {
 	phantom.exit()
 })
 `
+
+func loadjs() string {
+	jsP := filepath.Join(getCachePath(), "load.js")
+
+	if _, err := os.Stat(jsP); os.IsNotExist(err) {
+		ioutil.WriteFile(jsP, []byte(js), os.ModePerm)
+	}
+
+	return jsP
+}
