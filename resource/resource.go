@@ -7,11 +7,13 @@ import (
 
 func AssetName() string {
 	var name string
-	if runtime.GOOS == "windows" {
+
+	switch runtime.GOOS {
+	case "windows":
 		name = filepath.Join("resource", "windows", "phantomjs.exe")
-	} else if runtime.GOOS == "darwin" {
+	case "darwin":
 		name = filepath.Join("resource", "darwin", "phantomjs")
-	} else {
+	default:
 		name = filepath.Join("resource", "linux", "phantomjs")
 	}
 
