@@ -25,3 +25,14 @@ Flags:
   -h, --help   help for gophan
 
 ```
+
+```
+gophan run [URL or HTML] <option>
+
+Available Options:
+  -o, --out   Set output file(available extensions are png, jpg, pdf etc)
+              $ gophan run [URL or HTML] -o output/capture.png
+
+  -s, --set   Set custom javascript for phantomjs
+              $ gophan run [URL or HTML] -s custom/load.js
+```

@@ -34,7 +34,7 @@ func init() {
 
 func run(args []string) error {
 	if len(args) == 0 {
-		return errors.New("Argument does not exist")
+		return runUsage()
 	}
 
 	p, err := phantom.NewPhantom()
@@ -48,4 +48,16 @@ func run(args []string) error {
 	}
 
 	return nil
+}
+
+func runUsage() error {
+	return errors.New(`gophan run [URL or HTML] <option>
+
+Available Options:
+  -o, --out   Set output file(available extensions are png, jpg, pdf etc)
+              $ gophan run [URL or HTML] -o output/capture.png
+
+  -s, --set   Set custom javascript for phantomjs
+              $ gophan run [URL or HTML] -s custom/load.js
+	`)
 }
