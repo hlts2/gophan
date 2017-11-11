@@ -27,6 +27,7 @@ Flags:
 ```
 
 ```
+$ gophan run
 gophan run [URL or HTML] <option>
 
 Available Options:
