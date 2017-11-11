@@ -11,7 +11,7 @@ import (
 
 var runCmd = &cli.Command{
 	Use:   "run",
-	Short: "",
+	Short: "Run binary of phantomjs internally",
 	Run: func(cmd *cli.Command, args []string) {
 		if err := run(args); err != nil {
 			fmt.Println(err)
@@ -26,6 +26,8 @@ var (
 )
 
 func init() {
+	RootCmd.AddCommand(runCmd)
+
 	runCmd.PersistentFlags().StringVarP(&output, "out", "o", "capture.png", "Specify the output file of the capture result")
 	runCmd.PersistentFlags().StringVarP(&jsFile, "set", "s", "", "Set Custom Javascript file for phantomjs")
 }

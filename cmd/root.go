@@ -9,11 +9,7 @@ import (
 
 var RootCmd = &cli.Command{
 	Use:   "gophan",
-	Short: "",
-}
-
-func init() {
-	RootCmd.AddCommand(runCmd)
+	Short: "Go commandline wrapper for phantomjs ",
 }
 
 func Execute() {
