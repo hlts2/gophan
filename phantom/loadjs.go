@@ -11,10 +11,29 @@ var js = `
 var page = require('webpage').create()
 var args = require('system').args
 
-//([0]javascript [1] URL, [2] Output File)
+//([0]javascript [1] URL, [2] Output File [3]Selector)
 page.open(args[1], function(state) {
 	if (state == "success") {
-		page.render(args[2])
+		if(args[3] == "") {
+			page.render(args[2])
+			phantom.exit()
+			return
+		}
+
+		var clipRect = page.evaluate(function(args) {
+			return document.querySelector(args[3]).getBoundingClientRect()
+		}, args)
+
+		if(clipRect != null) {
+			page.clipRect = {
+				top   : clipRect.top,
+				left  : clipRect.left,
+				width : clipRect.width,
+				height: clipRect.height
+			}
+
+			page.render(args[2])
+		}
 	}
 	phantom.exit()
 })

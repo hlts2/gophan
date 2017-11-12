@@ -23,6 +23,7 @@ var runCmd = &cli.Command{
 var (
 	output string
 	jsFile string
+	query  string
 )
 
 func init() {
@@ -30,6 +31,7 @@ func init() {
 
 	runCmd.PersistentFlags().StringVarP(&output, "out", "o", "capture.png", "Specify the output file of the capture result")
 	runCmd.PersistentFlags().StringVarP(&jsFile, "set", "s", "", "Set Custom Javascript file for phantomjs")
+	runCmd.PersistentFlags().StringVarP(&query, "query", "q", "", "Set CSS selector")
 }
 
 func run(args []string) error {
@@ -42,7 +44,7 @@ func run(args []string) error {
 		return err
 	}
 
-	err = p.Exec(append([]string{jsFile, args[0]}, output))
+	err = p.Exec(append([]string{jsFile, args[0]}, output, query))
 	if err != nil {
 		return err
 	}
