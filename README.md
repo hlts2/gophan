@@ -26,7 +26,6 @@ Flags:
 
 ```
 
-## Example
 ```
 gophan run [URL or HTML] <option>
 
