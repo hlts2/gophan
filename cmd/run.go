@@ -56,10 +56,13 @@ func runUsage() error {
 	return errors.New(`gophan run [URL or HTML] <option>
 
 Available Options:
-  -o, --out   Set output file(available extensions are png, jpg, pdf etc)
+  -o, --out   Set the output file of the capture result (available extensions are png, jpg, pdf etc)
               $ gophan run [URL or HTML] -o output/capture.png
 
   -s, --set   Set custom javascript for phantomjs
               $ gophan run [URL or HTML] -s custom/load.js
+
+  -q, --query Set CSS selector
+              $ gophan run [URL or HTML] -q "#main"
 	`)
 }
