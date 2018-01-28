@@ -39,3 +39,9 @@ Available Options:
   -q, --query Set CSS selector
               $ gophan run [URL or HTML] -q "#main"
 ```
+
+## Example
+
+```
+gophan run http://localhost/ -o output/capture.png
+```
