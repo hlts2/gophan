@@ -43,5 +43,6 @@ Available Options:
 ## Example
 
 ```
-gophan run http://localhost/ -o output/capture.png
+gophan run http://localhost/ -o images/capture.png
 ```
+[capture](images/capture.png)
