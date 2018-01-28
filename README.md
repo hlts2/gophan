@@ -45,4 +45,4 @@ Available Options:
 ```
 gophan run http://localhost/ -o images/capture.png
 ```
-[capture](images/capture.png)
+![capture](images/capture.png)
