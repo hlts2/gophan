@@ -42,8 +42,14 @@ Available Options:
 
 ## Example
 
+First, execute the following command to launch the local server.
 ```
+cd example
 go run main.go
+```
+
+Next, execute the gophan command,
+```
 gophan run http://localhost/ -o images/capture.png
 ```
 ![capture](images/capture.png)
