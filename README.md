@@ -44,8 +44,6 @@ Available Options:
 
 ```
 go run main.go
-```
-```
 gophan run http://localhost/ -o images/capture.png
 ```
 ![capture](images/capture.png)
