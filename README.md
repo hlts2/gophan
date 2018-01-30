@@ -5,10 +5,16 @@ gophan is Go commandline wrapper for [`phantomjs`][phantomjs]
 [phantomjs]: http://phantomjs.org/
 
 # Install
+First, install gophan on your machine using the Go toolchain:
 
 ```
 go get github.com/hlts2/gophan
 ```
+
+You do not need to install phantomjs using package manager such as apt-get or brew.
+Because gophan is embedding the phantomjs binary for windows and linux and linux in the program using [go-bindata][go-bindata].
+
+[go-bindata]: https://github.com/jteeuwen/go-bindata
 
 ## CLI Usage
 
