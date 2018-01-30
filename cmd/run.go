@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"time"
 
+	"github.com/briandowns/spinner"
 	"github.com/hlts2/gophan/phantom"
 	cli "github.com/spf13/cobra"
 )
@@ -44,10 +46,15 @@ func run(args []string) error {
 		return err
 	}
 
+	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	s.Start()
+
 	err = p.Exec(append([]string{jsFile, args[0]}, output, query))
 	if err != nil {
 		return err
 	}
+
+	s.Stop()
 
 	return nil
 }
