@@ -48,13 +48,12 @@ func run(args []string) error {
 
 	s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 	s.Start()
+	defer s.Stop()
 
 	err = p.Exec(append([]string{jsFile, args[0]}, output, query))
 	if err != nil {
 		return err
 	}
-
-	s.Stop()
 
 	return nil
 }
