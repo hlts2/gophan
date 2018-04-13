@@ -13,6 +13,10 @@ So you can install it with the following command only:
 go get github.com/hlts2/gophan
 ```
 
+# Target
+- [x] Mac
+- [] Windows
+- [] Linux
 
 [go-bindata]: https://github.com/jteeuwen/go-bindata
 
