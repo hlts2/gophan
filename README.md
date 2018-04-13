@@ -15,8 +15,8 @@ go get github.com/hlts2/gophan
 
 # Target
 - [x] Mac
-- [] Windows
-- [] Linux
+- [ ] Windows
+- [ ] Linux
 
 [go-bindata]: https://github.com/jteeuwen/go-bindata
 
